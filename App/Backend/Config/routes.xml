@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<routes>
+    <!-- <route url="/url_of_page.html" module="Module" action="action" /> -->
+    <!-- <route url="/url_of_page-(.+)-([0-9]+)\.html" module="Module" action="action" vars="slug,id" /> -->
+</routes>
