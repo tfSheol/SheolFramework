@@ -24,7 +24,7 @@ $appLoader->register();
 $modelLoader = new \Core\SplClassLoader('Model', __DIR__.'/../Lib');
 $modelLoader->register();
 
-$entityLoader = new \Core\SplClassLoader('Entity', __DIR__.'/../Lib');
+$entityLoader = new \Core\SplClassLoader('Entities', __DIR__.'/../Lib');
 $entityLoader->register();
 
 $appClass = 'App\\'.$_GET['app'].'\\'.$_GET['app'].'Application';

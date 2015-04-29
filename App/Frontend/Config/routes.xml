@@ -3,4 +3,6 @@
     <!-- <route url="/url_of_page.html" module="Module" action="action" /> -->
     <!-- <route url="/url_of_page-(.+)-([0-9]+)\.html" module="Module" action="action" vars="slug,id" /> -->
     <route url="/" module="Accueil" action="index" />
+    <route url="/hello" module="Helloworld" action="index" />
+    <route url="/helloget/([0-9]+)" module="Helloworld" action="hello" vars="id" />
 </routes>

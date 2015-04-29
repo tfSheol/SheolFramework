@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <definitions>
-    <!-- <define var="nomber" value="5" /> -->
+    <!-- <define var="number" value="5" /> -->
+    <define var="title_bis" value="test var in file" />
 </definitions>

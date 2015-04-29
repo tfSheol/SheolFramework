@@ -11,13 +11,24 @@ namespace Core;
  * *.ini for mysql connect data !
  */
 
-class PDOFactory {
-    public static function getMysqlConnexion() {
+class PDOFactory extends Config {
+    private $_nameApp;
+
+    public function __construct($name) {
+        $this->_nameApp = $name;
+        $this->getMysqlConnexion();
+    }
+
+    public function getMysqlConnexion() {
         try {
-            $db = new \PDO('mysql:host=localhost;dbname=news', 'root', '');
+            $db = new \PDO('mysql:host='.$this->get("host", $this->_nameApp).
+                            ';dbname='.$this->get("db_name", $this->_nameApp),
+                            $this->get("username", $this->_nameApp),
+                            $this->get("password", $this->_nameApp));
             $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (\PDOException $e) {
+            //echo "PDO ERROR : ".$e;
             return null;
         }
     }

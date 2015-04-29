@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<definitions>
+    <!-- SQL PDO -->
+    <define var="host" value="localhost" />
+    <define var="db_name" value="test" />
+    <define var="username" value="root" />
+    <define var="password" value="" />
+</definitions>
