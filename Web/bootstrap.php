@@ -4,9 +4,6 @@
  * 28/04/2015 - 14:26
  */
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 const DEFAULT_APP = 'Frontend';
 
 if (!isset($_GET['app']) || !file_exists(__DIR__.'/../App/'.$_GET['app'])) {

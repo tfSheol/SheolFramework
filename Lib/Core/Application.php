@@ -12,12 +12,14 @@ abstract class Application {
     protected $user;
     protected $config;
     protected $name;
+    protected $lang;
 
     public function __construct() {
         $this->httpRequest = new HTTPRequest($this);
         $this->httpResponse = new HTTPResponse($this);
         $this->user = new User($this);
         $this->config = new Config($this);
+        $this->lang = new Lang($this);
         $this->name = '';
     }
 
@@ -65,5 +67,9 @@ abstract class Application {
 
     public function config() {
         return $this->config;
+    }
+
+    public function lang() {
+        return $this->lang;
     }
 }

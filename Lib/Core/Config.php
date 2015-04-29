@@ -10,6 +10,13 @@ class Config extends ApplicationComponent {
     protected $vars = array();
     private $_defaultPath = '/../../Config/app.xml';
 
+    private function setErrorShow() {
+        if ($this->vars['debug'] == "true") {
+            error_reporting(E_ALL);
+            ini_set("display_errors", 1);
+        }
+    }
+
     private function getGeneralValue($path) {
         $xml = new \DOMDocument;
         $xml->load($path);
@@ -17,6 +24,7 @@ class Config extends ApplicationComponent {
         foreach ($elements as $element) {
             $this->vars[$element->getAttribute('var')] = $element->getAttribute('value');
         }
+        $this->setErrorShow();
     }
 
     public function get($var, $name = null) {

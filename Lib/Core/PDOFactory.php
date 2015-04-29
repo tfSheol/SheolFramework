@@ -28,7 +28,9 @@ class PDOFactory extends Config {
             $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (\PDOException $e) {
-            //echo "PDO ERROR : ".$e;
+            if ($this->get("debug", $this->_nameApp) == "true") {
+                echo "<pre>PDOFactory : ".$e."</pre>";
+            }
             return null;
         }
     }
