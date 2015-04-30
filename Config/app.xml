@@ -4,8 +4,8 @@
     <define var="debug" value="true" />
 
     <!-- SQL PDO -->
-    <define var="host" value="localhost" />
-    <define var="db_name" value="test" />
-    <define var="username" value="root" />
-    <define var="password" value="" />
+    <define var="host" value="db428783451.db.1and1.com" />
+    <define var="db_name" value="db428783451" />
+    <define var="username" value="dbo428783451" />
+    <define var="password" value="dbo428783451-azf" />
 </definitions>

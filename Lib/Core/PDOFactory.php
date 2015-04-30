@@ -6,17 +6,11 @@
 
 namespace Core;
 
-/**
- * TODO
- * *.ini for mysql connect data !
- */
-
 class PDOFactory extends Config {
     private $_nameApp;
 
     public function __construct($name) {
         $this->_nameApp = $name;
-        $this->getMysqlConnexion();
     }
 
     public function getMysqlConnexion() {
