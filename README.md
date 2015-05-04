@@ -3,7 +3,7 @@
 * /Api/ *charge automatique les api's* __No Work__
 * /App/ *contient toutes les app d'un projet, example : frontend & backend*
 * /Config/app.xml *fichier de configuration global, peut être override dans les apps*
-* /Config/Lang/ *contient toutes les traductions dans différents langages de mamière global* __Override possible dans les apps, à faire__
+* /Config/Lang/ *contient toutes les traductions dans différents langages de manière global* __Override possible dans les apps, à faire__
 * /Errors/ *contient toutes les pages d'erreurs, example : 404.php*
 * /Lib/ *contient toutes les libs utiles au bon fonctionement du projet*
    * /Lib/Core/ *la lib la plus importante, le coeur du framework*
@@ -21,6 +21,6 @@
 * /App/__APP_NAME__/Modules/__MODULE_NAME__/ *notre module.*
 * /App/__APP_NAME__/Modules/__MODULE_NAME__/__MODULE_NAME__Controller.php *notre contrôleur.*
 * /App/__APP_NAME__/Modules/__MODULE_NAME__/Views/ *les vues du module.*
-* /Lib/Model/__MODULE_NAME__Manager.php *le manager de base pour notre module.*
-* /Lib/Model/__MODULE_NAME__ManagerPDO.php *notre manager utilisant PDO.*
+* /Lib/Model/__MODULE_NAMEManager.php__ *le manager de base pour notre module.*
+* /Lib/Model/__MODULE_NAMEManagerPDO.php__ *notre manager utilisant PDO.*
 * /Lib/Entity/__MODULE_NAME__.php *la classe représentant un enregistrement pour notre module.*
