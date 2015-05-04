@@ -1,8 +1,26 @@
-Make a new module :
+# SheolFramework #
+### Global Architecture ##
+* /Api/ *charge automatique les api's* __No Work__
+* /App/ *contient toutes les app d'un projet, example : frontend & backend*
+* /Config/app.xml *fichier de configuration global, peut être override dans les apps*
+* /Config/Lang/ *contient toutes les traductions dans différents langages de mamière global* __Override possible dans les apps, à faire__
+* /Errors/ *contient toutes les pages d'erreurs, example : 404.php*
+* /Lib/ *contient toutes les libs utiles au bon fonctionement du projet*
+   * /Lib/Core/ *la lib la plus importante, le coeur du framework*
+   * /Lib/Entities/ *les entités des apps* __A pofiner__
+   * /Lib/Model/ *les models des apps*
+* /Web/ *contient toute la partie visible*
+* /Web/bootstrap.php *c'est un peut le méga chargeur du framework !!!*
 
- * Le dossier /App/Frontend/Modules/News qui contiendra notre module.
- * Le fichier /App/Frontend/Modules/News/NewsController.php qui contiendra notre contrôleur.
- * Le dossier /App/Frontend/Modules/News/Views qui contiendra les vues.
- * Le fichier /lib/Model/NewsManager.php qui contiendra notre manager de base.
- * Le fichier /lib/Model/NewsManagerPDO.php qui contiendra notre manager utilisant PDO.
- * Le fichier /lib/Entity/News.php qui contiendra la classe représentant un enregistrement.
+### APP Architecture ##
+* /App/__APP_NAME__/Config/ *contient toutes les config relatifs à l'app*
+* /App/__APP_NAME__/Modules/ *contient tous les modules de l'app, plus détaillé en bas*
+* /App/__APP_NAME__/Templates/ *contient touts les templates fixe pour chaques modules*
+
+### Make a new module ! ##
+* /App/__APP_NAME__/Modules/__MODULE_NAME__/ *notre module.*
+* /App/__APP_NAME__/Modules/__MODULE_NAME__/__MODULE_NAME__Controller.php *notre contrôleur.*
+* /App/__APP_NAME__/Modules/__MODULE_NAME__/Views/ *les vues du module.*
+* /Lib/Model/__MODULE_NAME__Manager.php *le manager de base pour notre module.*
+* /Lib/Model/__MODULE_NAME__ManagerPDO.php *notre manager utilisant PDO.*
+* /Lib/Entity/__MODULE_NAME__.php *la classe représentant un enregistrement pour notre module.*
