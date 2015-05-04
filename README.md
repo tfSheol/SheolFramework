@@ -3,7 +3,7 @@
 * /Api/ *charge automatique les api's* __No Work__
 * /App/ *contient toutes les app d'un projet, example : frontend & backend*
 * /Config/app.xml *fichier de configuration global, peut être override dans les apps*
-* /Config/Lang/ *contient toutes les traductions dans différents langages de manière global* __Override possible dans les apps, à faire__
+* /Config/Lang/ *contient toutes les traductions dans différents langages de manière global*
 * /Errors/ *contient toutes les pages d'erreurs, example : 404.php*
 * /Lib/ *contient toutes les libs utiles au bon fonctionement du projet*
    * /Lib/Core/ *la lib la plus importante, le coeur du framework*

@@ -16,7 +16,6 @@ class HelloworldController extends BackController {
     }
 
     public function executeHello(HTTPRequest $request) {
-        $this->_page->addLang($this->_app->getLang()->get("FR_fr"));
         $this->_page->addVar("title", "Get test page");
         $this->_page->addVar("id", $request->getData('id'));
         $this->_page->addVar("test2", $request->getData('test2'));

@@ -16,7 +16,7 @@ class FrontendApplication extends Application {
 
     public function run() {
         $controller = $this->getController();
-        $controller->execute();
+        $controller->execute("FR_fr");
         $this->_httpResponse->setPage($controller->getPage());
         $this->_httpResponse->send();
     }

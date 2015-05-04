@@ -24,7 +24,8 @@ abstract class BackController extends ApplicationComponent {
         $this->setView($action);
     }
 
-    public function execute() {
+    public function execute($lang = "FR_fr") {
+        $this->_page->addLang($this->_app->getLang()->get($lang));
         $method = 'execute'.ucfirst($this->_action);
         if (!is_callable([$this, $method])) {
             throw new \RuntimeException('Action : "'.$this->_action.'", is not defined in this module.');
