@@ -24,3 +24,14 @@
 * /Lib/Model/__MODULE_NAMEManager.php__ *le manager de base pour notre module.*
 * /Lib/Model/__MODULE_NAMEManagerPDO.php__ *notre manager utilisant PDO.*
 * /Lib/Entity/__MODULE_NAME__.php *la classe représentant un enregistrement pour notre module.*
+
+### TODO ###
+- [x] Faire l'architecture du framework.
+- [x] Recoder les parties nécessaires.
+- [x] Coder quelques examples.
+- [x] Clean le projet.
+- [x] Tester le Framework.
+- [ ] Détailler l'utilisation des formulaires automatiques.
+- [ ] Corriger toute la doc.
+- [ ] Commenter le code.
+- [ ] Améliorer le Framework.
