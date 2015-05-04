@@ -31,6 +31,7 @@
 - [x] Coder quelques examples.
 - [x] Clean le projet.
 - [x] Tester le Framework.
+- [x] Gestionaire multi langues.
 - [ ] Détailler l'utilisation des formulaires automatiques.
 - [ ] Corriger toute la doc.
 - [ ] Commenter le code.
