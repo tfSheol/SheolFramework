@@ -7,11 +7,11 @@
 namespace Core;
 
 class Config extends ApplicationComponent {
-    protected $vars = array();
+    protected $_vars = array();
     private $_defaultPath = '/../../Config/app.xml';
 
     private function setErrorShow() {
-        if ($this->vars['debug'] == "true") {
+        if ($this->_vars['debug'] == "true") {
             error_reporting(E_ALL);
             ini_set("display_errors", 1);
         }
@@ -22,24 +22,24 @@ class Config extends ApplicationComponent {
         $xml->load($path);
         $elements = $xml->getElementsByTagName('define');
         foreach ($elements as $element) {
-            $this->vars[$element->getAttribute('var')] = $element->getAttribute('value');
+            $this->_vars[$element->getAttribute('var')] = $element->getAttribute('value');
         }
         $this->setErrorShow();
     }
 
     public function get($var, $name = null) {
         if (!$name) {
-            $name = $this->app->name();
+            $name = $this->_app->getName();
         }
-        if (!$this->vars) {
+        if (!$this->_vars) {
             $app_path = __DIR__.'/../../App/'.$name.'/Config/app.xml';
             $this->getGeneralValue(__DIR__.$this->_defaultPath);
             if (file_exists($app_path)) {
                 $this->getGeneralValue($app_path);
             }
         }
-        if (isset($this->vars[$var])) {
-            return $this->vars[$var];
+        if (isset($this->_vars[$var])) {
+            return $this->_vars[$var];
         }
         return null;
     }

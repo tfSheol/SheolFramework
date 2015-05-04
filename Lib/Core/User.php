@@ -31,7 +31,7 @@ class User {
 
     public function setAuthenticated($authenticated = true) {
         if (!is_bool($authenticated)) {
-            throw new \InvalidArgumentException('La valeur spécifiée à la méthode User::setAuthenticated() doit être un boolean');
+            throw new \InvalidArgumentException('The value specified in the method User::setAuthenticated() must be a boolean.');
         }
         $_SESSION['auth'] = $authenticated;
     }

@@ -7,7 +7,7 @@
 namespace Core;
 
 abstract class Validator {
-    protected $errorMessage;
+    protected $_errorMessage;
 
     public function __construct($errorMessage) {
         $this->setErrorMessage($errorMessage);
@@ -17,11 +17,11 @@ abstract class Validator {
 
     public function setErrorMessage($errorMessage) {
         if (is_string($errorMessage)) {
-            $this->errorMessage = $errorMessage;
+            $this->_errorMessage = $errorMessage;
         }
     }
 
     public function errorMessage() {
-        return $this->errorMessage;
+        return $this->_errorMessage;
     }
 }

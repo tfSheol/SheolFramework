@@ -11,13 +11,13 @@ use \Core\Application;
 class FrontendApplication extends Application {
     public function __construct() {
         parent::__construct();
-        $this->name = 'Frontend';
+        $this->_name = 'Frontend';
     }
 
     public function run() {
         $controller = $this->getController();
         $controller->execute();
-        $this->httpResponse->setPage($controller->page());
-        $this->httpResponse->send();
+        $this->_httpResponse->setPage($controller->getPage());
+        $this->_httpResponse->send();
     }
 }

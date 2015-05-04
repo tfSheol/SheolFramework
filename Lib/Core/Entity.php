@@ -9,40 +9,30 @@ namespace Core;
 abstract class Entity implements \ArrayAccess {
     use Hydrator;
 
-    protected $erreurs = [], $id;
+    protected $_errors = array();
+    protected $_id;
 
-    public function __construct(array $donnees = []) {
-        if (!empty($donnees)) {
-            $this->hydrate($donnees);
+    public function __construct(array $data = []) {
+        if (!empty($data)) {
+            $this->hydrate($data);
         }
     }
 
     public function isNew() {
-        return empty($this->id);
+        return empty($this->_id);
     }
 
-    public function erreurs() {
-        return $this->erreurs;
+    public function getErrors() {
+        return $this->_errors;
     }
 
-    public function id() {
-        return $this->id;
+    public function getId() {
+        return $this->_id;
     }
 
     public function setId($id) {
-        $this->id = (int) $id;
+        $this->_id = (int) $id;
     }
-
-    /*public function hydrate(array $donnees) {
-        foreach ($donnees as $attribut => $valeur) {
-            $methode = 'set'.ucfirst($attribut);
-            if (is_callable([$this, $methode])) {
-                $this->$methode($valeur);
-            }
-        }
-    }*/
-
-
 
     public function offsetGet($var) {
         if (isset($this->$var) && is_callable([$this, $var])) {
@@ -62,6 +52,6 @@ abstract class Entity implements \ArrayAccess {
     }
 
     public function offsetUnset($var) {
-        throw new \Exception('Impossible de supprimer une quelconque valeur');
+        throw new \Exception('Can not remove any value.');
     }
 }

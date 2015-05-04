@@ -7,9 +7,9 @@
 namespace Core;
 
 class FormHandler {
-    protected $form;
-    protected $manager;
-    protected $request;
+    protected $_form;
+    protected $_manager;
+    protected $_request;
 
     public function __construct(Form $form, Manager $manager, HTTPRequest $request) {
         $this->setForm($form);
@@ -18,22 +18,34 @@ class FormHandler {
     }
 
     public function process() {
-        if($this->request->method() == 'POST' && $this->form->isValid()) {
-            $this->manager->save($this->form->entity());
+        if($this->_request->method() == 'POST' && $this->_form->isValid()) {
+            $this->_manager->save($this->_form->entity());
             return true;
         }
         return false;
     }
 
     public function setForm(Form $form) {
-        $this->form = $form;
+        $this->_form = $form;
     }
 
     public function setManager(Manager $manager) {
-        $this->manager = $manager;
+        $this->_manager = $manager;
     }
 
     public function setRequest(HTTPRequest $request) {
-        $this->request = $request;
+        $this->_request = $request;
+    }
+
+    public function getForm() {
+        return $this->_form;
+    }
+
+    public function getManager() {
+        return $this->_manager;
+    }
+
+    public function getRequest() {
+        return $this->_request;
     }
 }

@@ -7,17 +7,17 @@
 namespace Core;
 
 abstract class BackController extends ApplicationComponent {
-    protected $action = '';
-    protected $module = '';
-    protected $page = null;
-    protected $view = '';
-    protected $managers = null;
+    protected $_action = '';
+    protected $_module = '';
+    protected $_page = null;
+    protected $_view = '';
+    protected $_managers = null;
 
     public function __construct(Application $app, $module, $action) {
         parent::__construct($app);
 
-        $this->managers = new Managers('PDO', (new PDOFactory($app->name()))->getMysqlConnexion());
-        $this->page = new Page($app);
+        $this->_managers = new Managers('PDO', (new PDOFactory($app->getName()))->getMysqlConnexion());
+        $this->_page = new Page($app);
 
         $this->setModule($module);
         $this->setAction($action);
@@ -25,37 +25,37 @@ abstract class BackController extends ApplicationComponent {
     }
 
     public function execute() {
-        $method = 'execute'.ucfirst($this->action);
+        $method = 'execute'.ucfirst($this->_action);
         if (!is_callable([$this, $method])) {
-            throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur ce module');
+            throw new \RuntimeException('Action : "'.$this->_action.'", is not defined in this module.');
         }
-        $this->$method($this->app->httpRequest());
+        $this->$method($this->_app->getHttpRequest());
     }
 
-    public function page(){
-        return $this->page;
+    public function getPage(){
+        return $this->_page;
     }
 
     public function setModule($module){
         if (!is_string($module) || empty($module)){
-            throw new \InvalidArgumentException('Le module doit être une chaine de caractères valide');
+            throw new \InvalidArgumentException('The module must be a valid string.');
         }
-        $this->module = $module;
+        $this->_module = $module;
     }
 
     public function setAction($action){
         if (!is_string($action) || empty($action)){
-            throw new \InvalidArgumentException('L\'action doit être une chaine de caractères valide');
+            throw new \InvalidArgumentException('This action must be a valid string.');
         }
-        $this->action = $action;
+        $this->_action = $action;
     }
 
     public function setView($view)
     {
         if (!is_string($view) || empty($view)) {
-            throw new \InvalidArgumentException('La vue doit être une chaine de caractères valide');
+            throw new \InvalidArgumentException('The view must be a valid string.');
         }
-        $this->view = $view;
-        $this->page->setContentFile(__DIR__.'/../../App/'.$this->app->name().'/Modules/'.$this->module.'/Views/'.$this->view.'.php');
+        $this->_view = $view;
+        $this->_page->setContentFile(__DIR__.'/../../App/'.$this->_app->getName().'/Modules/'.$this->_module.'/Views/'.$this->_view.'.php');
     }
 }

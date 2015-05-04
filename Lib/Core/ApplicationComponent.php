@@ -7,13 +7,13 @@
 namespace Core;
 
 abstract class ApplicationComponent {
-    protected $app;
+    protected $_app;
 
     public function __construct(Application $app) {
-        $this->app = $app;
+        $this->_app = $app;
     }
 
-    public function app() {
-        return $this->app;
+    public function getApp() {
+        return $this->_app;
     }
 }

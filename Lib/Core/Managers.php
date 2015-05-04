@@ -7,23 +7,23 @@
 namespace Core;
 
 class Managers {
-    protected $api = null;
-    protected $dao = null;
-    protected $managers = [];
+    protected $_api = null;
+    protected $_dao = null;
+    protected $_managers = array();
 
     public function __construct($api, $dao) {
-        $this->api = $api;
-        $this->dao = $dao;
+        $this->_api = $api;
+        $this->_dao = $dao;
     }
 
     public function getManagerOf($module) {
         if (!is_string($module) || empty($module)) {
-            throw new \InvalidArgumentException('Le module spécifié est invalide');
+            throw new \InvalidArgumentException('The specified module is not valid.');
         }
-        if (!isset($this->managers[$module])) {
-            $manager = '\\Model\\'.$module.'Manager'.$this->api;
-            $this->managers[$module] = new $manager($this->dao);
+        if (!isset($this->_managers[$module])) {
+            $manager = '\\Model\\'.$module.'Manager'.$this->_api;
+            $this->_managers[$module] = new $manager($this->_dao);
         }
-        return $this->managers[$module];
+        return $this->_managers[$module];
     }
 }

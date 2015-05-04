@@ -11,7 +11,7 @@ use Core\HTTPRequest;
 
 class AccueilController extends BackController {
     public function executeIndex(HTTPRequest $request) {
-        $this->page->addVar('test', "test de data");
-        $this->page->addVar('manager', $this->managers->getManagerOf('Accueil')->test());
+        $this->_page->addVar('test', "test de data");
+        $this->_page->addVar('manager', $this->_managers->getManagerOf('Accueil')->test());
     }
 }

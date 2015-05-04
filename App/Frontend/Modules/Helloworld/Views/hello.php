@@ -2,5 +2,6 @@
     <?= $config ?>
     <?= $id ?>
     <?= $test ?>
+    <?= $test2 ?>
     <?= $_title_ ?>
 </p>

@@ -11,15 +11,16 @@ use Core\HTTPRequest;
 
 class HelloworldController extends BackController {
     public function executeIndex(HTTPRequest $request) {
-        $this->page->addVar("hello", "Hello World");
-        $this->page->addVar("title", "Hello World page");
+        $this->_page->addVar("hello", "Hello World");
+        $this->_page->addVar("title", "Hello World page");
     }
 
     public function executeHello(HTTPRequest $request) {
-        $this->page->addLang($this->app->lang()->get("FR_fr"));
-        $this->page->addVar("title", "Get test page");
-        $this->page->addVar("id", $request->getData('id'));
-        $this->page->addVar("config", $this->app->config()->get("title_bis"));
-        $this->page->addVar("test", $this->app->config()->get("host"));
+        $this->_page->addLang($this->_app->getLang()->get("FR_fr"));
+        $this->_page->addVar("title", "Get test page");
+        $this->_page->addVar("id", $request->getData('id'));
+        $this->_page->addVar("test2", $request->getData('test2'));
+        $this->_page->addVar("config", $this->_app->getConfig()->get("title_bis"));
+        $this->_page->addVar("test", $this->_app->getConfig()->get("host"));
     }
 }

@@ -7,21 +7,21 @@
 namespace Core;
 
 class Router {
-    protected $routes = [];
+    protected $_routes = array();
     const NO_ROUTE = 1;
 
     public function addRoute(Route $route) {
-        if (!in_array($route, $this->routes)) {
-            $this->routes[] = $route;
+        if (!in_array($route, $this->_routes)) {
+            $this->_routes[] = $route;
         }
     }
 
     public function getRoute($url) {
-        foreach ($this->routes as $route) {
+        foreach ($this->_routes as $route) {
             if (($varsValues = $route->match($url)) !== false) {
                 if ($route->hasVars()) {
-                    $varsNames = $route->varsNames();
-                    $listVars = [];
+                    $varsNames = $route->getVarsNames();
+                    $listVars = array();
                     foreach ($varsValues as $key => $match) {
                         if ($key !== 0) {
                             $listVars[$varsNames[$key - 1]] = $match;
@@ -32,6 +32,6 @@ class Router {
                 return $route;
             }
         }
-        throw new \RuntimeException('Route no found!', self::NO_ROUTE);
+        throw new \RuntimeException('Route not found!', self::NO_ROUTE);
     }
 }

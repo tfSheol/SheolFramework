@@ -7,7 +7,7 @@
 namespace Core;
 
 abstract class FormBuilder {
-    protected $form;
+    protected $_form;
 
     public function __construct(Entity $entity) {
         $this->setForm(new Form($entity));
@@ -16,10 +16,10 @@ abstract class FormBuilder {
     abstract public function build();
 
     public function setForm(Form $form) {
-        $this->form = $form;
+        $this->_form = $form;
     }
 
-    public function form() {
-        return $this->form;
+    public function getForm() {
+        return $this->_form;
     }
 }

@@ -7,9 +7,13 @@
 namespace Core;
 
 abstract class Manager {
-    protected $dao;
+    protected $_dao;
 
     public function __construct($dao) {
-        $this->dao = $dao;
+        if ($dao != null) {
+            $this->_dao = $dao;
+        } else {
+            $this->_dao = new DAO();
+        }
     }
 }

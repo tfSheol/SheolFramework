@@ -7,11 +7,11 @@
 namespace Core;
 
 class HTTPResponse {
-    protected $page;
-    protected $app;
+    protected $_page;
+    protected $_app;
 
     public function __construct(Application $app) {
-        $this->app = $app;
+        $this->_app = $app;
     }
 
     public function addHeader($header) {
@@ -24,18 +24,18 @@ class HTTPResponse {
     }
 
     public function redirect404() {
-        $this->page = new Page($this->app);
-        $this->page->setContentFile(__DIR__.'/../../Errors/404.html');
+        $this->_page = new Page($this->_app);
+        $this->_page->setContentFile(__DIR__.'/../../Errors/404.php');
         $this->addHeader('HTTP/1.0 404 Not Found');
         $this->send();
     }
 
     public function send() {
-        exit($this->page->getGeneratedPage());
+        exit($this->_page->getGeneratedPage());
     }
 
     public function setPage(Page $page) {
-        $this->page = $page;
+        $this->_page = $page;
     }
 
     public function setCookie($name, $value = '', $expire = 0, $path = null,

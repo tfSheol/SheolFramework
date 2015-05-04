@@ -7,25 +7,25 @@
 namespace Core;
 
 class Lang extends ApplicationComponent {
-    protected $vars = array();
+    protected $_vars = array();
 
     private function getGeneralValue($path) {
         $xml = new \DOMDocument;
         $xml->load($path);
         $elements = $xml->getElementsByTagName('define');
         foreach ($elements as $element) {
-            $this->vars['_'.$element->getAttribute('var').'_'] = $element->getAttribute('value');
+            $this->_vars['_'.$element->getAttribute('var').'_'] = $element->getAttribute('value');
         }
     }
 
     public function get($lang) {
-        if (!$this->vars) {
-            $app_path = __DIR__.'/../../App/'.$this->app->name().'/Config/Lang/'.$lang.'.xml';
+        if (!$this->_vars) {
+            $app_path = __DIR__.'/../../App/'.$this->_app->getName().'/Config/Lang/'.$lang.'.xml';
             $this->getGeneralValue(__DIR__.'/../../Config/Lang/'.$lang.'.xml');
             if (file_exists($app_path)) {
                 $this->getGeneralValue($app_path);
             }
         }
-        return $this->vars;
+        return $this->_vars;
     }
 }

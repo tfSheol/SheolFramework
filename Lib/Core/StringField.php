@@ -7,7 +7,7 @@
 namespace Core;
 
 class StringField extends Field {
-    protected $maxLength;
+    protected $_maxLength;
 
     public function buildWidget() {
         $widget = '';
@@ -30,7 +30,7 @@ class StringField extends Field {
         if ($maxLength > 0) {
             $this->maxLength = $maxLength;
         } else {
-            throw new \RuntimeException('La longueur maximale doit être un nombre supérieur à 0');
+            throw new \RuntimeException('The maximum length must be a number greater than 0.');
         }
     }
 }

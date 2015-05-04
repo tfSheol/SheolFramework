@@ -7,24 +7,24 @@
 namespace Core;
 
 class TexField extends Field {
-    protected $cols;
-    protected $rows;
+    protected $_cols;
+    protected $_rows;
 
     public function buildWidget() {
         $widget = '';
-        if (!empty($this->errorMessage)) {
-            $widget .= $this->errorMessage.'<br />';
+        if (!empty($this->_errorMessage)) {
+            $widget .= $this->_errorMessage.'<br />';
         }
-        $widget .= '<label>'.$this->label.'</label><textarea name="'.$this->name.'"';
-        if (!empty($this->cols)) {
-            $widget .= ' cols="'.$this->cols.'"';
+        $widget .= '<label>'.$this->_label.'</label><textarea name="'.$this->_name.'"';
+        if (!empty($this->_cols)) {
+            $widget .= ' cols="'.$this->_cols.'"';
         }
-        if (!empty($this->rows)) {
-            $widget .= ' rows="'.$this->rows.'"';
+        if (!empty($this->_rows)) {
+            $widget .= ' rows="'.$this->_rows.'"';
         }
         $widget .= '>';
-        if (!empty($this->value)) {
-            $widget .= htmlspecialchars($this->value);
+        if (!empty($this->_value)) {
+            $widget .= htmlspecialchars($this->_value);
         }
         return $widget.'</textarea>';
     }
@@ -32,14 +32,14 @@ class TexField extends Field {
     public function setCols($cols) {
         $cols = (int) $cols;
         if ($cols > 0) {
-            $this->cols = $cols;
+            $this->_cols = $cols;
         }
     }
 
     public function setRows($rows) {
         $rows = (int) $rows;
         if ($rows > 0) {
-            $this->rows = $rows;
+            $this->_rows = $rows;
         }
     }
 }

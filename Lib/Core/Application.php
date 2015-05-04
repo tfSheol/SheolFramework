@@ -7,69 +7,70 @@
 namespace Core;
 
 abstract class Application {
-    protected $httpRequest;
-    protected $httpResponse;
-    protected $user;
-    protected $config;
-    protected $name;
-    protected $lang;
+    protected $_httpRequest;
+    protected $_httpResponse;
+    protected $_user;
+    protected $_config;
+    protected $_name;
+    protected $_lang;
 
     public function __construct() {
-        $this->httpRequest = new HTTPRequest($this);
-        $this->httpResponse = new HTTPResponse($this);
-        $this->user = new User($this);
-        $this->config = new Config($this);
-        $this->lang = new Lang($this);
-        $this->name = '';
+        $this->_httpRequest = new HTTPRequest($this);
+        $this->_httpResponse = new HTTPResponse($this);
+        $this->_user = new User($this);
+        $this->_config = new Config($this);
+        $this->_lang = new Lang($this);
+        $this->_name = '';
     }
 
     public function getController() {
         $router = new Router;
         $xml = new \DOMDocument;
-        $xml->load(__DIR__.'/../../App/'.$this->name.'/Config/routes.xml');
+        $xml->load(__DIR__.'/../../App/'.$this->_name.'/Config/routes.xml');
         $routes = $xml->getElementsByTagName('route');
+        $matchedRoute = null;
         foreach ($routes as $route) {
-            $vars = [];
+            $vars = array();
             if ($route->hasAttribute('vars')) {
                 $vars = explode(',', $route->getAttribute('vars'));
             }
             $router->addRoute(new Route($route->getAttribute('url'), $route->getAttribute('module'), $route->getAttribute('action'), $vars));
         }
         try {
-            $matchedRoute = $router->getRoute($this->httpRequest->requestURI());
+            $matchedRoute = $router->getRoute($this->_httpRequest->requestURI());
         } catch (\RuntimeException $e) {
             if ($e->getCode() == Router::NO_ROUTE) {
-                $this->httpResponse->redirect404();
+                $this->_httpResponse->redirect404();
             }
         }
-        $_GET = array_merge($_GET, $matchedRoute->vars());
-        $controllerClass = 'App\\'.$this->name.'\\Modules\\'.$matchedRoute->module().'\\'.$matchedRoute->module().'Controller';
-        return new $controllerClass($this, $matchedRoute->module(), $matchedRoute->action());
+        $_GET = array_merge($_GET, $matchedRoute->getVars());
+        $controllerClass = 'App\\'.$this->_name.'\\Modules\\'.$matchedRoute->getModule().'\\'.$matchedRoute->getModule().'Controller';
+        return new $controllerClass($this, $matchedRoute->getModule(), $matchedRoute->getAction());
     }
 
     abstract public function run();
 
-    public function httpRequest() {
-        return $this->httpRequest;
+    public function getHttpRequest() {
+        return $this->_httpRequest;
     }
 
-    public function httpResponse() {
-        return $this->httpResponse;
+    public function getHttpResponse() {
+        return $this->_httpResponse;
     }
 
-    public function name() {
-        return $this->name;
+    public function getName() {
+        return $this->_name;
     }
 
-    public function user() {
-        return $this->user;
+    public function getUser() {
+        return $this->_user;
     }
 
-    public function config() {
-        return $this->config;
+    public function getConfig() {
+        return $this->_config;
     }
 
-    public function lang() {
-        return $this->lang;
+    public function getLang() {
+        return $this->_lang;
     }
 }

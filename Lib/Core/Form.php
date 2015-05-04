@@ -7,23 +7,23 @@
 namespace Core;
 
 class Form {
-    protected $entity;
-    protected $fields = [];
+    protected $_entity;
+    protected $_fields = array();
 
     public function __construct(Entity $entity) {
         $this->setEntity($entity);
     }
 
     public function add(Field $field) {
-        $attr = $field->name();
-        $field->setValue($this->entity->$attr());
-        $this->fields[] = $field;
+        $attr = $field->getName();
+        $field->setValue($this->_entity->$attr());
+        $this->_fields[] = $field;
         return $this;
     }
 
     public function createView(){
         $view = '';
-        foreach ($this->fields as $field) {
+        foreach ($this->_fields as $field) {
             $view .= $field->buildWidget().'<br />';
         }
         return $view;
@@ -31,7 +31,7 @@ class Form {
 
     public function isValid() {
         $valid = true;
-        foreach ($this->fields as $field) {
+        foreach ($this->_fields as $field) {
             if (!$field->isValid()) {
                 $valid = false;
             }
@@ -39,11 +39,11 @@ class Form {
         return $valid;
     }
 
-    public function entity() {
-        return $this->entity;
+    public function getEntity() {
+        return $this->_entity;
     }
 
     public function setEntity(Entity $entity) {
-        $this->entity = $entity;
+        $this->_entity = $entity;
     }
 }

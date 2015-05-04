@@ -10,7 +10,7 @@ use Entities\Accueil;
 
 class AccueilManagerPDO extends AccueilManager {
     public function test() {
-        $request = $this->dao->prepare("SELECT * FROM forum_members WHERE id_member = :id");
+        $request = $this->_dao->prepare("SELECT * FROM forum_members WHERE id_member = :id");
         $request->bindValue(':id', 3, \PDO::PARAM_INT);
         $request->execute();
         return $request->fetch(\PDO::FETCH_ASSOC);

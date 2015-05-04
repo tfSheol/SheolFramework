@@ -7,11 +7,11 @@
 namespace Core;
 
 class Route {
-    protected $action;
-    protected $module;
-    protected $url;
-    protected $varsNames;
-    protected $vars = [];
+    protected $_action;
+    protected $_module;
+    protected $_url;
+    protected $_varsNames;
+    protected $_vars = array();
 
     public function __construct($url, $module, $action, array $varsNames) {
         $this->setUrl($url);
@@ -21,11 +21,11 @@ class Route {
     }
 
     public function hasVars() {
-        return !empty($this->varsNames);
+        return !empty($this->_varsNames);
     }
 
     public function match($url) {
-        if (preg_match('`^'.$this->url.'$`', $url, $matches)) {
+        if (preg_match('`^'.$this->_url.'$`', $url, $matches)) {
             return $matches;
         } else {
             return false;
@@ -34,43 +34,43 @@ class Route {
 
     public function setAction($action) {
         if (is_string($action)) {
-            $this->action = $action;
+            $this->_action = $action;
         }
     }
 
     public function setModule($module) {
         if (is_string($module)) {
-            $this->module = $module;
+            $this->_module = $module;
         }
     }
 
     public function setUrl($url) {
         if (is_string($url)) {
-            $this->url = $url;
+            $this->_url = $url;
         }
     }
 
     public function setVarsNames(array $varsNames) {
-        $this->varsNames = $varsNames;
+        $this->_varsNames = $varsNames;
     }
 
     public function setVars(array $vars) {
-        $this->vars = $vars;
+        $this->_vars = $vars;
     }
 
-    public function action() {
-        return $this->action;
+    public function getAction() {
+        return $this->_action;
     }
 
-    public function module() {
-        return $this->module;
+    public function getModule() {
+        return $this->_module;
     }
 
-    public function vars() {
-        return $this->vars;
+    public function getVars() {
+        return $this->_vars;
     }
 
-    public function varsNames() {
-        return $this->varsNames;
+    public function getVarsNames() {
+        return $this->_varsNames;
     }
 }

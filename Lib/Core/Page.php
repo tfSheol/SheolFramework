@@ -7,43 +7,43 @@
 namespace Core;
 
 class Page extends ApplicationComponent {
-    protected $contentFile;
-    protected $vars = [];
+    protected $_contentFile;
+    protected $_vars = array();
 
     public function addVar($var, $value) {
         if (!is_string($var) || is_numeric($var) || empty($var)) {
-            throw new \InvalidArgumentException('Le nom de la variable doit être une chaine de caractères non nulle');
+            throw new \InvalidArgumentException('The variable name must be a string not null.');
         }
-        $this->vars[$var] = $value;
+        $this->_vars[$var] = $value;
     }
 
     public function addLang($array) {
         foreach ($array as $var => $data) {
             if (!is_string($var) || is_numeric($var) || empty($var)) {
-                throw new \InvalidArgumentException('Le nom de la variable doit être une chaine de caractères non nulle');
+                throw new \InvalidArgumentException('The variable name must be a string not null.');
             }
-            $this->vars[$var] = $data;
+            $this->_vars[$var] = $data;
         }
     }
 
     public function getGeneratedPage() {
-        if (!file_exists($this->contentFile)) {
-            throw new \RuntimeException('La vue spécifiée n\'existe pas');
+        if (!file_exists($this->_contentFile)) {
+            throw new \RuntimeException('The specified view does not exist.');
         }
-        $user = $this->app->user();
-        extract($this->vars);
+        $user = $this->_app->getUser();
+        extract($this->_vars);
         ob_start();
-            require $this->contentFile;
+            require $this->_contentFile;
         $content = ob_get_clean();
         ob_start();
-            require __DIR__.'/../../App/'.$this->app->name().'/Templates/layout.php';
+            require __DIR__.'/../../App/'.$this->_app->getName().'/Templates/layout.php';
         return ob_get_clean();
     }
 
     public function setContentFile($contentFile) {
         if (!is_string($contentFile) || empty($contentFile)) {
-            throw new \InvalidArgumentException('La vue spécifiée est invalide');
+            throw new \InvalidArgumentException('The specified view is invalid.');
         }
-        $this->contentFile = $contentFile;
+        $this->_contentFile = $contentFile;
     }
 }
