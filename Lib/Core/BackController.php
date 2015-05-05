@@ -19,9 +19,7 @@ abstract class BackController extends ApplicationComponent {
         $this->_managers = new Managers('PDO', (new PDOFactory($app->getName()))->getMysqlConnexion());
         $this->_page = new Page($app);
 
-        if (!isset($_SESSION['local'])) {
-            $_SESSION['local'] = "FR_fr";
-        }
+        $_SESSION['local'] = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 
         $this->setModule($module);
         $this->setAction($action);

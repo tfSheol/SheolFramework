@@ -18,10 +18,26 @@ class Lang extends ApplicationComponent {
         }
     }
 
+    /**
+     * Les switch case sont bien plus lent que les if elseif pour l'instant !
+     *
+     * @param $lang
+     * @return string
+     */
+    private function getLangFileName($lang) {
+        if ($lang === "fr") {
+            return $lang."_FR";
+        } elseif ($lang === "en") {
+            return $lang."_US";
+        } else {
+            return "fr_FR";
+        }
+    }
+
     public function get($lang) {
         if (!$this->_vars) {
-            $app_path = __DIR__.'/../../App/'.$this->_app->getName().'/Config/Lang/'.$lang.'.xml';
-            $this->getGeneralValue(__DIR__.'/../../Config/Lang/'.$lang.'.xml');
+            $app_path = __DIR__.'/../../App/'.$this->_app->getName().'/Config/Lang/'.$this->getLangFileName($lang).'.xml';
+            $this->getGeneralValue(__DIR__.'/../../Config/Lang/'.$this->getLangFileName($lang).'.xml');
             if (file_exists($app_path)) {
                 $this->getGeneralValue($app_path);
             }
