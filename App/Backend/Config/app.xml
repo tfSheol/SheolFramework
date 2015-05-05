@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <definitions>
     <!-- <define var="number" value="5" /> -->
+    <define var="login" value="test" />
+    <define var="pass" value="test" />
 </definitions>

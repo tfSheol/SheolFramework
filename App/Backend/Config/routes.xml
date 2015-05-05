@@ -2,4 +2,7 @@
 <routes>
     <!-- <route url="/url_of_page.html" module="Module" action="action" /> -->
     <!-- <route url="/url_of_page-(.+)-([0-9]+)\.html" module="Module" action="action" vars="slug,id" /> -->
+    <!-- route url="/" module="Connexion" action="index" /-->
+    <route url="/panel/logout" module="Connexion" action="logout" />
+    <route url="/panel/" module="Home" action="index" />
 </routes>

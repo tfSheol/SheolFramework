@@ -19,13 +19,17 @@ abstract class BackController extends ApplicationComponent {
         $this->_managers = new Managers('PDO', (new PDOFactory($app->getName()))->getMysqlConnexion());
         $this->_page = new Page($app);
 
+        if (!isset($_SESSION['local'])) {
+            $_SESSION['local'] = "FR_fr";
+        }
+
         $this->setModule($module);
         $this->setAction($action);
         $this->setView($action);
     }
 
-    public function execute($lang = "FR_fr") {
-        $this->_page->addLang($this->_app->getLang()->get($lang));
+    public function execute() {
+        $this->_page->addLang($this->_app->getLang()->get($_SESSION['local']));
         $method = 'execute'.ucfirst($this->_action);
         if (!is_callable([$this, $method])) {
             throw new \RuntimeException('Action : "'.$this->_action.'", is not defined in this module.');

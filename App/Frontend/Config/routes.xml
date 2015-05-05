@@ -5,4 +5,5 @@
     <route url="/" module="Accueil" action="index" />
     <route url="/hello" module="Helloworld" action="index" />
     <route url="/helloget/([0-9]+)/([0-9]+)" module="Helloworld" action="hello" vars="id,test2" />
+    <route url="/local/([A-Za-z_]+)/" module="Lang" action="change" vars="local" />
 </routes>

@@ -27,16 +27,15 @@ class Page extends ApplicationComponent {
     }
 
     public function getGeneratedPage() {
-        if (!file_exists($this->_contentFile)) {
-            throw new \RuntimeException('The specified view does not exist.');
+        if (file_exists($this->_contentFile)) {
+            $user = $this->_app->getUser();
+            extract($this->_vars);
+            ob_start();
+                require $this->_contentFile;
+            $content = ob_get_clean();
+            ob_start();
+                require __DIR__ . '/../../App/' . $this->_app->getName() . '/Templates/layout.php';
         }
-        $user = $this->_app->getUser();
-        extract($this->_vars);
-        ob_start();
-            require $this->_contentFile;
-        $content = ob_get_clean();
-        ob_start();
-            require __DIR__.'/../../App/'.$this->_app->getName().'/Templates/layout.php';
         return ob_get_clean();
     }
 

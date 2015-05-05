@@ -4,6 +4,8 @@
  * 28/04/2015 - 14:26
  */
 
+session_start();
+
 const DEFAULT_APP = 'Frontend';
 
 if (!isset($_GET['app']) || !file_exists(__DIR__.'/../App/'.$_GET['app'])) {

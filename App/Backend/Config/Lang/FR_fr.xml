@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<definitions>
+    <define var="user" value="Nom d'utilisateur" />
+    <define var="password" value="Mot de passe" />
+    <define var="login_button" value="Connexion" />
+</definitions>
